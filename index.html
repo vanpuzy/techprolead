@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TechProLead | IT Solutions</title>
+    <style>
+      :root {
+        --black: #000000;
+        --white: #ffffff;
+        --dark-gray: #0a0a0a;
+        --medium-gray: #1a1a1a;
+        --light-gray: #2a2a2a;
+        --highlight: #ffffff;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", system-ui, sans-serif;
+      }
+
+      body {
+        background-color: var(--black);
+        color: var(--white);
+        line-height: 1.8;
+        font-weight: 400;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      /* Section Transition Effects */
+      section {
+        position: relative;
+        overflow: hidden;
+      }
+
+      section::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--highlight),
+          transparent
+        );
+        opacity: 0.3;
+        transition: opacity 0.5s ease;
+      }
+
+      section:hover::after {
+        opacity: 0.8;
+      }
+
+      /* Header */
+      header {
+        padding: 2rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--light-gray);
+        background-color: var(--black);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--white);
+        letter-spacing: -0.5px;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+      }
+
+      nav ul li {
+        margin-left: 2rem;
+        position: relative;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: var(--white);
+        font-weight: 500;
+        transition: all 0.3s;
+        padding-bottom: 0.5rem;
+      }
+
+      nav ul li a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--highlight);
+        transition: width 0.3s ease;
+      }
+
+      nav ul li a:hover::after {
+        width: 100%;
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 10rem 0;
+        text-align: center;
+        background: linear-gradient(
+          135deg,
+          var(--dark-gray) 0%,
+          var(--black) 100%
+        );
+        border-bottom: 1px solid var(--light-gray);
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 2rem;
+        line-height: 1.2;
+        font-weight: 800;
+        text-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+        max-width: 700px;
+        margin: 0 auto 3rem;
+        color: #cccccc;
+      }
+
+      .btn {
+        display: inline-block;
+        background: var(--white);
+        color: var(--black);
+        padding: 1rem 2.5rem;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s;
+        border: 2px solid var(--white);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 0.9rem;
+      }
+
+      .btn:hover {
+        background: transparent;
+        color: var(--white);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+      }
+
+      /* Services */
+      .services {
+        padding: 8rem 0;
+        background-color: var(--black);
+        border-bottom: 1px solid var(--light-gray);
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 5rem;
+        font-size: 2.5rem;
+        font-weight: 700;
+        position: relative;
+        display: inline-block;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: var(--highlight);
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.5s ease;
+      }
+
+      .section-title:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2.5rem;
+      }
+
+      .service-card {
+        background: var(--medium-gray);
+        padding: 2.5rem;
+        border-radius: 8px;
+        border: 1px solid var(--light-gray);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .service-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 3px;
+        height: 0;
+        background: var(--highlight);
+        transition: height 0.4s ease;
+      }
+
+      .service-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--highlight);
+        box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
+      }
+
+      .service-card:hover::before {
+        height: 100%;
+      }
+
+      .service-card h3 {
+        margin-bottom: 1.5rem;
+        color: var(--white);
+        font-weight: 600;
+        font-size: 1.4rem;
+        position: relative;
+      }
+
+      .service-card h3::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background: var(--highlight);
+      }
+
+      .service-card p {
+        color: #aaaaaa;
+        margin-top: 1.5rem;
+      }
+
+      /* Customers */
+      .customers {
+        padding: 8rem 0;
+        background-color: var(--dark-gray);
+        border-bottom: 1px solid var(--light-gray);
+        text-align: center;
+      }
+
+      .customers p {
+        color: #aaaaaa;
+        max-width: 600px;
+        margin: 0 auto 4rem;
+        font-size: 1.1rem;
+      }
+
+      .customers-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 4rem;
+        margin-top: 3rem;
+      }
+
+      .customer-logo {
+        width: 160px;
+        height: 90px;
+        object-fit: contain;
+        filter: brightness(0) invert(1);
+        opacity: 0.6;
+        transition: all 0.4s ease;
+        transform: scale(1);
+      }
+
+      .customer-logo:hover {
+        opacity: 1;
+        transform: scale(1.1);
+        filter: brightness(0) invert(1)
+          drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+      }
+
+      /* About */
+      .about {
+        padding: 8rem 0;
+        text-align: center;
+        background-color: var(--black);
+        border-bottom: 1px solid var(--light-gray);
+      }
+
+      .about p {
+        max-width: 800px;
+        margin: 0 auto;
+        color: #aaaaaa;
+        font-size: 1.2rem;
+        line-height: 1.8;
+      }
+
+      /* Contact */
+      .contact {
+        padding: 8rem 0;
+        background-color: var(--dark-gray);
+        color: white;
+        border-bottom: 1px solid var(--light-gray);
+      }
+
+      .contact-form {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .form-group {
+        margin-bottom: 2rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.8rem;
+        font-weight: 500;
+        color: var(--white);
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 1rem;
+        background: var(--medium-gray);
+        border: 1px solid var(--light-gray);
+        border-radius: 4px;
+        color: var(--white);
+        transition: all 0.3s;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--highlight);
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+      }
+
+      .form-group textarea {
+        height: 180px;
+        resize: vertical;
+      }
+
+      /* Footer */
+      footer {
+        text-align: center;
+        padding: 4rem 0;
+        color: #777777;
+        font-size: 0.9rem;
+        background-color: var(--black);
+        position: relative;
+      }
+
+      footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--highlight),
+          transparent
+        );
+      }
+
+      .about .container {
+        width: 100%;
+        text-align: center;
+      }
+
+      .section-title {
+        display: flex;
+        justify-content: center;
+        align-items: center; /* nếu muốn căn giữa cả theo chiều dọc */
+        text-align: center;
+      }
+    </style>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo">TechProLead</div>
+        <nav>
+          <ul>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#customers">Customers</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+
+    <section class="hero">
+      <div class="container">
+        <h1>Innovative IT Solutions for Your Business</h1>
+        <p>
+          We deliver cutting-edge technology services tailored to your unique
+          needs, helping you stay ahead in the digital landscape.
+        </p>
+        <a href="#contact" class="btn">Contact Us</a>
+      </div>
+    </section>
+
+    <section id="services" class="services">
+      <div class="container">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <h3>3D Modeling</h3>
+            <p>
+              Specializing in 3D modeling for mobile devices, delivering
+              visually stunning yet highly optimized models that balance
+              aesthetics with performance.
+            </p>
+          </div>
+          <div class="service-card">
+            <h3>3D Interactive</h3>
+            <p>
+              Creating high-end visual content for mobile and web applications
+              with WebGL and real-time rendering techniques.
+            </p>
+          </div>
+          <div class="service-card">
+            <h3>IT Outsourcing</h3>
+            <p>
+              Tailored development of native mobile applications for iOS and
+              Android, supported by powerful backend systems.
+            </p>
+          </div>
+          <div class="service-card">
+            <h3>AI/Machine Learning</h3>
+            <p>
+              Lightweight AI models for mobile or cloud deployment with high
+              accuracy for image, data, and sound processing.
+            </p>
+          </div>
+          <div class="service-card">
+            <h3>Cloud Deployment</h3>
+            <p>
+              Specializing in transitioning local server infrastructure to AWS
+              with cost-effective and swift execution.
+            </p>
+          </div>
+          <div class="service-card">
+            <h3>Bot Trading</h3>
+            <p>
+              Custom trading indicators and automated trading bots for Forex and
+              cryptocurrency markets.
+            </p>
+          </div>
+          <div class="service-card">
+            <h3>Consulting</h3>
+            <p>
+              Bespoke technology solutions for e-commerce, fashion, financial
+              services, IoT, and digital transformation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="customers" class="customers">
+      <div class="container">
+        <h2 class="section-title" style="text-align: center">Our Customers</h2>
+        <p>We're proud to have worked with these industry leaders</p>
+        <div class="customers-grid">
+          <a href="https://dgcs.vn/search?td=True" target="_blank">
+            <img
+              src="./images/Logo/Background/DGC.png"
+              alt="Client 2"
+              style="width: 150px; height: auto"
+            />
+          </a>
+          <a href="https://hamedco.vn/" target="_blank">
+            <img
+              src="./images/Logo/Background/Hamedco logo .png"
+              alt="Client 2"
+              style="width: 150px; height: auto"
+            />
+          </a>
+          <a
+            href="http://www.hpnrt.co.kr/en/company/greeting.php"
+            target="_blank"
+          >
+            <img
+              src="./images/Logo/Background/HPNRT.png"
+              alt="Client 2"
+              style="width: 150px; height: auto"
+            />
+          </a>
+          <a href="https://www.metatrader4.com/" target="_blank">
+            <img
+              src="./images/Logo/Background/Logo Meta Trader.png"
+              alt="Client 2"
+              style="width: 150px; height: auto"
+            />
+          </a>
+          <a href="https://www.tcedenim.co.kr/" target="_blank">
+            <img
+              src="./images/Logo/Background/Logo TCE.jpg"
+              alt="Client 2"
+              style="width: 150px; height: auto"
+            />
+          </a>
+          <a href="https://tranminhmed.vn/" target="_blank">
+            <img
+              src="./images/Logo/Background/Logo Tran Minh.jpg"
+              alt="Client 2"
+              style="width: 150px; height: auto"
+            />
+          </a>
+
+          <a href="https://tpot.vn" target="_blank">
+            <img
+              src="./images/Logo/Background/TPot.jpg"
+              alt="Client 2"
+              style="width: 150px; height: auto"
+            />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="container">
+        <h2 class="section-title" style="text-align: center">Build on Trust</h2>
+        <p>
+          TechProLead is a leading provider of IT solutions with over a decade of
+          experience helping businesses transform their operations through
+          technology. Our team of certified experts is dedicated to delivering
+          innovative, reliable, and scalable solutions that drive growth and
+          efficiency.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-form">
+          <form>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" required />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" required></textarea>
+            </div>
+            <button type="submit" class="btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+      <script>
+    const telegramBotToken = '6037137720:AAFBEfCG9xWY4K_3tx7VSZzMXGgmt9-Zdog'; // 🔁 Thay bằng token của bạn
+    const chatId = "662991734"; // ✅ Chat ID của bạn
+
+    document.querySelector("form").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      const text = `📩 New Contact Message:\n👤 Name: ${name}\n📧 Email: ${email}\n📝 Message: ${message}`;
+
+      fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: text,
+        }),
+      })
+        .then((res) => {
+          if (res.ok) {
+            alert("✅ Message sent to Telegram!");
+            document.querySelector("form").reset();
+          } else {
+            alert("❌ Failed to send message.");
+          }
+        })
+        .catch((err) => {
+          console.error("Error:", err);
+          alert("⚠️ Error sending message.");
+        });
+    });
+  </script>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2023 TechProLead. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+
+</html>
